@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  test:
+    build: .
+    volumes:
+      - .:/maxemail_gem
+    tty: true
+    stdin_open: true
+    env_file:
+      - .env

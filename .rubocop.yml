@@ -1,0 +1,75 @@
+AllCops:
+  TargetRubyVersion: 2.5.1
+  Exclude:
+    - 'kit_cms/**/*'
+    - 'kit_assets/**/*'
+    - 'kit_objects/**/*'
+    - 'kb/**/*'
+    - 'log/**/*'
+    - 'script/**/*'
+    - 'pdfs/**/*'
+    - 'app/views/**/*'
+    - 'Gemfile'
+
+Rails:
+  Enabled: true
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
+Rails/DynamicFindBy:
+  Enabled: false
+
+Rails/TimeZone:
+  Enabled: false
+
+Rails/Output:
+  Enabled: false
+
+Rails/Date:
+  Enabled: false
+
+Rails/FilePath:
+  Enabled: false
+
+Metrics/LineLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/AbcSize:
+   Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Style/DateTime:
+   Enabled: false
+
+Metrics/CyclomaticComplexity:
+   Enabled: false
+
+Metrics/PerceivedComplexity:
+   Enabled: false
+
+Style/ClassAndModuleChildren:
+   Enabled: false
+
+Metrics/ModuleLength:
+   Enabled: false
+
+Lint/AmbiguousBlockAssociation:
+   Enabled: false
+
+Style/ConditionalAssignment:
+   Enabled: false
+
+Style/Documentation:
+   Enabled: false
+
+Style/FrozenStringLiteralComment:
+   Enabled: false

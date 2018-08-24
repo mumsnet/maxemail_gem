@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name = 'maxemail_gem'
+  s.name = 'maxemail_api'
   s.version = '1.0.2'
   s.date = '2018-07-11'
   s.summary = 'Maxemails API wrapped in a gem'
