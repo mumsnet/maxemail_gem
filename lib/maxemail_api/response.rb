@@ -12,4 +12,12 @@ class MaxemailApiResponse
       data: @data
     }.to_json
   end
+
+  def successful?
+    @data[:success]
+  end
+
+  def message
+    @data[:message]
+  end
 end

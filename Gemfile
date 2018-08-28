@@ -3,8 +3,8 @@ gemspec
 
 gem 'http'
 
-group :test do
+group :development, :test do
   gem 'rspec', require: false
-  gem 'pry', require: false
+  gem 'pry'
   gem 'guard-rspec', require: false
 end
