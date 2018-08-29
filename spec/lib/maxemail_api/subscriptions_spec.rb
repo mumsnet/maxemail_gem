@@ -34,15 +34,21 @@ RSpec.describe MaxemailApiSubscriptions do
     end
   end
 
-  # describe '#subscriptions' do
-  #   it 'should fetch all of the users subscriptions' do
-  #     described_class.subscriptions
-  #   end
-  # end
+  describe '#subscriptions' do
+    it 'should fetch all of the users subscriptions' do
+      described_class.subscribe(email_address: ENV['MAXEMAIL_TEST_EMAIL_ADDRESS'], list_id: ENV['MAXEMAIL_TEST_LIST_ID'])
+      # Subscribe the user to the mailing list
+      response = described_class.subscriptions(email_address: ENV['MAXEMAIL_TEST_EMAIL_ADDRESS'], list_id: ENV['MAXEMAIL_TEST_LIST_ID'])
+      # Expect the response to include that list id with subscribe = 1 and the users email address
+      expect(response.body.to_s).to include('"list_id":"' + ENV['MAXEMAIL_TEST_LIST_ID'] + '","record_type":"campaign","subscribed":"1"')
+      expect(response.body.to_s).to include('"email_address":"' + ENV['MAXEMAIL_TEST_EMAIL_ADDRESS'] + '')
+    end
+  end
 
   describe '#available_subscriptions' do
     it 'should fetch all of the users subscriptions' do
-      puts described_class.available_subscriptions
+      lists = described_class.available_subscriptions
+      expect(lists.to_s).to include('"list_id"=>"'+ENV['MAXEMAIL_TEST_LIST_ID']+'"')
     end
   end
 end
