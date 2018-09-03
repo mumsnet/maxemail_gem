@@ -29,7 +29,7 @@ module MaxemailApiSubscriptions
     false
   end
 
-  def unsubscribe(email_address: nil, list_id: nil, recipient_id: nil)
+  def unsu9bscribe(email_address: nil, recipient_id: nil, list_id:)
     recipient_id = find_recipient_id(email_address: email_address) if recipient_id.nil?
     MaxemailApiShared.send_request(params: { method: 'updateRecipient', data: { email_address: email_address, subscribed: 0 }.to_json, listID: list_id, recipientId: recipient_id }, method: 'list')
   end

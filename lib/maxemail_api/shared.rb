@@ -1,10 +1,9 @@
 module MaxemailApiShared
   class << self
     def send_request(params:, method:)
-      response = HTTP.headers(authentication_header)
-                     .get("#{ENV['MAXEMAIL_API_URL']}#{method}",
-                          params: params)
-      response
+      HTTP.headers(authentication_header)
+          .get("#{ENV['MAXEMAIL_API_URL']}#{method}",
+               params: params)
     end
 
     private
