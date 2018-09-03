@@ -3,7 +3,7 @@ module MaxemailApiSubscriptions
   include MaxemailApiShared
 
   def subscribe(email_address:, list_id:)
-    return MaxemailApiShared.send_request(params: { method: 'insertRecipient', data: { email_address: email_address, subscribed: 1 }.to_json, listID: list_id }, method: 'recipient') unless inserted?(email_address: email_address, list_id: list_id)
+    return MaxemailApiShared.send_request(params: { method: 'insertRecipient', data: { email_address: email_address, subscribed: 1 }.to_json, listID: list_id }, method: 'list') unless inserted?(email_address: email_address, list_id: list_id)
     MaxemailApiShared.send_request(params: { method: 'updateRecipient', data: { email_address: email_address, subscribed: 1 }.to_json, listID: list_id, recipientId: find_recipient_id(email_address: email_address) }, method: 'list')
   end
 
@@ -29,7 +29,7 @@ module MaxemailApiSubscriptions
     false
   end
 
-  def unsu9bscribe(email_address: nil, recipient_id: nil, list_id:)
+  def unsubscribe(email_address: nil, recipient_id: nil, list_id:)
     recipient_id = find_recipient_id(email_address: email_address) if recipient_id.nil?
     MaxemailApiShared.send_request(params: { method: 'updateRecipient', data: { email_address: email_address, subscribed: 0 }.to_json, listID: list_id, recipientId: recipient_id }, method: 'list')
   end

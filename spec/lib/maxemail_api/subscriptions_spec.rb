@@ -48,7 +48,7 @@ RSpec.describe MaxemailApiSubscriptions do
   describe '#available_subscriptions' do
     it 'should fetch all of the users subscriptions' do
       lists = described_class.available_subscriptions
-      expect(lists.to_s).to include('"list_id"=>"'+ENV['MAXEMAIL_TEST_LIST_ID']+'"')
+      expect(lists.to_s).to include('"list_id"=>"' + ENV['MAXEMAIL_TEST_LIST_ID'] + '"')
     end
   end
 end
