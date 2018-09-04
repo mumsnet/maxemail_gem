@@ -15,6 +15,7 @@ module MaxemailApiTriggered
                                                                    emailAddress: email_address,
                                                                    emailId: email_id,
                                                                    profileData: profile_data.to_json }, method: 'email_send').body)
+
     return MaxemailApiResponse.new(data: {}, success: true, message: 'Mail sent') if response['success'] == true
     return MaxemailApiResponse.new(data: {}, success: false, message: 'Server error') if response['success'] == false
   rescue StandardError => e
@@ -69,7 +70,7 @@ module MaxemailApiTriggered
   end
 
   def valid_profile_data?(profile_data)
-    JSON.parse(profile_data.to_s)
+    JSON.parse(profile_data.to_json)
     true
   rescue StandardError
     false
