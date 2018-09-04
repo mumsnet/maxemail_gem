@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    maxemail_api (2.0.0)
+    maxemail_api (2.0.1)
       http (>= 3.3.0)
 
 GEM

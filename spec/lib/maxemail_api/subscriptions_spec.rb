@@ -50,11 +50,11 @@ RSpec.describe MaxemailApiSubscriptions do
       recipient_id = described_class.find_recipient_id(email_address: ENV['MAXEMAIL_TEST_EMAIL_ADDRESS']).to_s
       range = [*'0'..'9', *'A'..'Z', *'a'..'z']
       prefix = Array.new(10) { range.sample }.join
-      new_email_address = prefix+'@0805aSDac4.com'
+      new_email_address = prefix + '@0805aSDac4.com'
       described_class.update_subscription_email(new_email_address: new_email_address, recipient_id: recipient_id)
       expect(described_class.find_recipient_id(email_address: new_email_address).to_s).to eq(recipient_id)
       response = described_class.find_recipient_id(email_address: ENV['MAXEMAIL_TEST_EMAIL_ADDRESS']).to_s
-      expect(response.to_s).to eq('null')
+      expect(response.to_s).to eq('')
       described_class.update_subscription_email(new_email_address: ENV['MAXEMAIL_TEST_EMAIL_ADDRESS'], recipient_id: recipient_id)
     end
   end

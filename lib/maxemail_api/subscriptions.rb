@@ -31,21 +31,26 @@ module MaxemailApiSubscriptions
 
   def unsubscribe(email_address: nil, recipient_id: nil, list_id:)
     recipient_id = find_recipient_id(email_address: email_address) if recipient_id.nil?
+    return false if recipient_id.nil?
     MaxemailApiShared.send_request(params: { method: 'updateRecipient', data: { email_address: email_address, subscribed: 0 }.to_json, listID: list_id, recipientId: recipient_id }, method: 'list')
   end
 
   def subscriptions(email_address: nil, recipient_id: nil, list_id:)
     recipient_id = find_recipient_id(email_address: email_address) if recipient_id.nil?
+    return false if recipient_id.nil?
     MaxemailApiShared.send_request(params: { method: 'fetchLists', listID: list_id, recipientId: recipient_id }, method: 'recipient')
   end
 
-  def update_subscription_email(old_email_address:nil, recipient_id: nil, new_email_address:)
+  def update_subscription_email(old_email_address: nil, recipient_id: nil, new_email_address:)
     recipient_id = find_recipient_id(email_address: old_email_address) if recipient_id.nil?
+    return false if recipient_id.nil?
     MaxemailApiShared.send_request(params: { method: 'update', data: { email_address: new_email_address }.to_json, recipientId: recipient_id }, method: 'recipient')
   end
 
   def find_recipient_id(email_address: nil)
-    MaxemailApiShared.send_request(params: { method: 'findByEmailAddress', emailAddress: email_address }, method: 'recipient')
+    response = MaxemailApiShared.send_request(params: { method: 'findByEmailAddress', emailAddress: email_address }, method: 'recipient').to_s
+    return nil if response == 'null'
+    response
   end
 
   def available_subscriptions
