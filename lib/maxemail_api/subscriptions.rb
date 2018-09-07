@@ -47,6 +47,14 @@ module MaxemailApiSubscriptions
     MaxemailApiShared.send_request(params: { method: 'update', data: { email_address: new_email_address }.to_json, recipientId: recipient_id }, method: 'recipient')
   end
 
+  def update_recipient(email_address:, data:)
+    MaxemailApiShared.send_request(params: { method: 'updateByEmailAddress', emailAddress: email_address, data: data }, method: 'recipient')
+  end
+
+  def fetch_profile_data(email_address:, profile_descriptions:)
+    MaxemailApiShared.send_request(params: { method: 'fetchProfileDataByEmailAddress', emailAddress: email_address, profileDescriptions: profile_descriptions }, method: 'recipient')
+  end
+
   def find_recipient_id(email_address: nil)
     response = MaxemailApiShared.send_request(params: { method: 'findByEmailAddress', emailAddress: email_address }, method: 'recipient').to_s
     return nil if response == 'null'
