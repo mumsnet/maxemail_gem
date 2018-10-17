@@ -25,3 +25,9 @@ Sending a trigged mail:
   end
 ```
   
+Update prefrences (Subscriptions):
+ ```ruby
+def update_subscriptions(email_address:, params:)
+  MaxemailApi.update_recipient(email_address: email_address, data: { Preferences: params }.to_json)
+end
+```
