@@ -1,4 +1,8 @@
 # Maxemail gem 💌
+Please view the API Doc's and read the source code for other usages of this gem:
+* [API Docs](https://mumsnet.postman.co/collections/4542578-890f57a2-e5b8-47f4-9b09-b6da9a36795c?workspace=dfc06a8c-8a1d-4315-89b9-2534aaf620cb)
+* [TERIBLE "OFFICIAL" Docs](https://docs.maxemail.xtremepush.com/mxm-dev/api)
+
 ## Installation
  In your gemfile
  ```ruby
