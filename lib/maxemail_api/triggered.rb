@@ -13,7 +13,7 @@ module MaxemailApiTriggered
     return MaxemailApiResponse.new(data: {}, success: false, message: 'Invalid Email address') unless valid_email?(email_address)
     response = JSON.parse(MaxemailApiShared.send_request(params: { method: 'triggerFolder',
                                                                    emailAddress: email_address,
-                                                                   folder_id: folder_id,
+                                                                   folderId: folder_id,
                                                                    profileData: profile_data.to_json }, method: 'email_send').body)
     return MaxemailApiResponse.new(data: {}, success: true, message: 'Mail sent') if response['success'] == true
     return MaxemailApiResponse.new(data: {}, success: false, message: 'Server error') if response['success'] == false
