@@ -6,8 +6,8 @@ module MaxemailApiShared
       puts "method: #{method}"
       puts 'END MaxemailApiResponse params and Method:'
       response = HTTP.headers(authentication_header)
-                     .get("#{ENV['MAXEMAIL_API_URL']}#{method}",
-                          params: params)
+                     .post("#{ENV['MAXEMAIL_API_URL']}#{method}",
+                           params: params)
       puts 'MaxemailApiResponse:'
       puts response
       puts 'END MaxemailApiResponse :'

@@ -7,7 +7,7 @@ module MaxemailApiTriggered
     MaxemailApiTriggered.send_triggered(email_address: email_address, email_id: email_id, profile_data: profile_data)
   end
 
-  def trigger_folder(folder_id:, email_address:, profile_data: )
+  def trigger_folder(folder_id:, email_address:, profile_data:)
     return MaxemailApiResponse.new(data: {}, success: false, message: 'Folder not found') if folder_id.nil?
     return MaxemailApiResponse.new(data: {}, success: false, message: 'Invalid Profile data') unless valid_profile_data?(profile_data)
     return MaxemailApiResponse.new(data: {}, success: false, message: 'Invalid Email address') unless valid_email?(email_address)
@@ -20,8 +20,9 @@ module MaxemailApiTriggered
   rescue StandardError => e
     puts 'MaxemailApiResponse Error:'
     puts e
+    puts "profile_data: #{profile_data}"
     puts 'END MaxemailApiResponse Error:'
-    return MaxemailApiResponse.new(data: {}, success: false, message: 'Server error') if response['success'] == false
+    MaxemailApiResponse.new(data: {}, success: false, message: 'Server error')
   end
 
   def send_triggered(email_address: nil, email_id: nil, profile_data: nil)
