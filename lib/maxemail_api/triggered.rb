@@ -81,8 +81,7 @@ module MaxemailApiTriggered
   end
 
   def valid_email?(email_address)
-    valid = '[A-Za-z\d.+-]+'
-    (email_address =~ /#{valid}@#{valid}\.#{valid}/).zero?
+    email_address.match(URI::MailTo::EMAIL_REGEXP).present?
   rescue StandardError
     false
   end
