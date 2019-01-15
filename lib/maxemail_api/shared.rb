@@ -2,12 +2,12 @@ module MaxemailApiShared
   class << self
     def send_request(params:, method:)
       puts 'MaxemailApiResponse params and Method:'
-      puts "params: #{params}"
+      puts "form_params: #{params}"
       puts "method: #{method}"
       puts 'END MaxemailApiResponse params and Method:'
       response = HTTP.headers(authentication_header)
                      .post("#{ENV['MAXEMAIL_API_URL']}#{method}",
-                           params: params)
+                           form: params)
       puts 'MaxemailApiResponse:'
       puts response
       puts 'END MaxemailApiResponse :'
