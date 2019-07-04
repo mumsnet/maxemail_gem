@@ -40,7 +40,7 @@ RSpec.describe MaxemailApiSubscriptions do
       # Subscribe the user to the mailing list
       response = described_class.subscriptions(email_address: ENV['MAXEMAIL_TEST_EMAIL_ADDRESS'], list_id: ENV['MAXEMAIL_TEST_LIST_ID'])
       # Expect the response to include that list id with subscribe = 1 and the users email address
-      expect(response.body.to_s).to include('"list_id":"' + ENV['MAXEMAIL_TEST_LIST_ID'] + '","record_type":"campaign","subscribed":"1"')
+      expect(response.body.to_s).to include('"list_id":"' + ENV['MAXEMAIL_TEST_LIST_ID'] + '","record_type":"both","subscribed":"1"')
       expect(response.body.to_s).to include('"email_address":"' + ENV['MAXEMAIL_TEST_EMAIL_ADDRESS'] + '')
     end
   end

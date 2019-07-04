@@ -16,13 +16,13 @@ module MaxemailApiTriggered
                                                                    folderId: folder_id,
                                                                    profileData: profile_data.to_json }, method: 'email_send').body)
     return MaxemailApiResponse.new(data: {}, success: true, message: 'Mail sent') if response['success'] == true
-    return MaxemailApiResponse.new(data: {}, success: false, message: 'Server error') if response['success'] == false
+    return MaxemailApiResponse.new(data: {}, success: false, message: response['msg']) if response['success'] == false
   rescue StandardError => e
     puts 'MaxemailApiResponse Error:'
     puts e
     puts "profile_data: #{profile_data}"
     puts 'END MaxemailApiResponse Error:'
-    MaxemailApiResponse.new(data: {}, success: false, message: 'Server error')
+    MaxemailApiResponse.new(data: {}, success: false, message: response['msg']) if response.present?
   end
 
   def send_triggered(email_address: nil, email_id: nil, profile_data: nil)
@@ -35,12 +35,12 @@ module MaxemailApiTriggered
                                                                    profileData: profile_data.to_json }, method: 'email_send').body)
 
     return MaxemailApiResponse.new(data: {}, success: true, message: 'Mail sent') if response['success'] == true
-    return MaxemailApiResponse.new(data: {}, success: false, message: 'Server error') if response['success'] == false
+    return MaxemailApiResponse.new(data: {}, success: false, message: response['msg']) if response['success'] == false
   rescue StandardError => e
     puts 'MaxemailApiResponse Error:'
     puts e
     puts 'END MaxemailApiResponse Error:'
-    return MaxemailApiResponse.new(data: {}, success: false, message: 'Server error') if response['success'] == false
+    return MaxemailApiResponse.new(data: {}, success: false, message: response['msg']) if response.present?
   end
 
   def find_email_id(folder_name: nil, email_name: nil)
@@ -80,16 +80,14 @@ module MaxemailApiTriggered
     nil
   end
 
-  def valid_email?(email_address)
-    email_address.match(URI::MailTo::EMAIL_REGEXP).present?
+  def
+  valid_email?(email_address)
+    email_address.match(URI::MailTo::EMAIL_REGEXP)
   rescue StandardError
     false
   end
 
   def valid_profile_data?(profile_data)
-    JSON.parse(profile_data.to_json)
-    true
-  rescue StandardError
-    false
+    !profile_data.is_a?(String)
   end
 end

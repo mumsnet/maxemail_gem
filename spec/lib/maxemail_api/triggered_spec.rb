@@ -30,7 +30,7 @@ RSpec.describe MaxemailApiTriggered do
     end
 
     it 'should fail to send a mail if invalid email address is given' do
-      response = described_class.send(folder_name: ENV['MAXEMAIL_TEST_FOLDER_NAME'], email_name: ENV['MAXEMAIL_TEST_EMAIL_NAME'], email_address: 'invalidemail', profile_data: {})
+      response = described_class.send(email_id: 1, folder_name: ENV['MAXEMAIL_TEST_FOLDER_NAME'], email_name: ENV['MAXEMAIL_TEST_EMAIL_NAME'], email_address: 'invalidemail', profile_data: {})
       expect(response.successful?).to be_falsey
       expect(response.message).to eq('Invalid Email address')
     end
@@ -38,7 +38,7 @@ RSpec.describe MaxemailApiTriggered do
     it 'should fail to send a mail if invalid email_id is given' do
       response = described_class.send(email_id: 99_999_999_999, email_address: ENV['MAXEMAIL_TEST_EMAIL_ADDRESS'], profile_data: {})
       expect(response.successful?).to be_falsey
-      expect(response.message).to eq('Server error')
+      expect(response.message).to eq("Unable to find row '99999999999' on table 'Email_Triggered'")
     end
   end
 end
