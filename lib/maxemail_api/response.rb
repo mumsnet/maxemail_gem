@@ -17,6 +17,10 @@ class MaxemailApiResponse
     @data[:success]
   end
 
+  def missing_template_id?
+    @data[:message].present? && @data[:message].include?('Could not find any approved triggered emails in folder')
+  end
+
   def message
     @data[:message]
   end

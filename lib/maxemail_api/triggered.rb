@@ -22,7 +22,7 @@ module MaxemailApiTriggered
     puts e
     puts "profile_data: #{profile_data}"
     puts 'END MaxemailApiResponse Error:'
-    MaxemailApiResponse.new(data: {}, success: false, message: response['msg']) if response.present?
+    MaxemailApiResponse.new(data: {}, success: false, message: response['msg']) unless response.nil?
   end
 
   def send_triggered(email_address: nil, email_id: nil, profile_data: nil)
@@ -40,7 +40,7 @@ module MaxemailApiTriggered
     puts 'MaxemailApiResponse Error:'
     puts e
     puts 'END MaxemailApiResponse Error:'
-    return MaxemailApiResponse.new(data: {}, success: false, message: response['msg']) if response.present?
+    return MaxemailApiResponse.new(data: {}, success: false, message: response['msg']) unless response.nil?
   end
 
   def find_email_id(folder_name: nil, email_name: nil)
